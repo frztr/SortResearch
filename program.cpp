@@ -9,6 +9,7 @@
 #include "sorts/combsort.h"
 #include "sorts/insertionsort.h"
 #include "sorts/selectionsort.h"
+#include "sorts/mergesort.h"
 #include "utils/randomizer.h"
 // #include "utils/customTimer.h"
 #include <vector>
@@ -118,7 +119,7 @@ int main(){
         cout << array[i] <<"\t";
     }
     cout << endl;
-    SelectionSort sort = SelectionSort();
+    MergeSort sort = MergeSort();
     sort.Sort(array,size);
     for(int i = 0;i < size;i++){
         cout << array[i] <<"\t";
