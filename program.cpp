@@ -8,6 +8,7 @@
 #include "sorts/shakesort.h"
 #include "sorts/combsort.h"
 #include "sorts/insertionsort.h"
+#include "sorts/selectionsort.h"
 #include "utils/randomizer.h"
 // #include "utils/customTimer.h"
 #include <vector>
@@ -111,13 +112,13 @@ int **generateArrays(int *sizes, int sizes_count)
 
 int main(){
     srand((unsigned int) time(NULL));
-    int size = 1000;
+    int size = 100;
     int* array = Randomizer::generateRandomArray(size);
     for(int i = 0;i < size;i++){
         cout << array[i] <<"\t";
     }
     cout << endl;
-    InsertionSort sort = InsertionSort();
+    SelectionSort sort = SelectionSort();
     sort.Sort(array,size);
     for(int i = 0;i < size;i++){
         cout << array[i] <<"\t";
