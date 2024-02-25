@@ -11,6 +11,7 @@
 #include "sorts/selectionsort.h"
 #include "sorts/mergesort.h"
 #include "utils/randomizer.h"
+#include "sorts/shellsort.h"
 // #include "utils/customTimer.h"
 #include <vector>
 
@@ -119,7 +120,7 @@ int main(){
         cout << array[i] <<"\t";
     }
     cout << endl;
-    MergeSort sort = MergeSort();
+    ShellSort sort = ShellSort();
     sort.Sort(array,size);
     for(int i = 0;i < size;i++){
         cout << array[i] <<"\t";
