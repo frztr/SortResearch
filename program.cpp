@@ -12,6 +12,7 @@
 #include "sorts/mergesort.h"
 #include "utils/randomizer.h"
 #include "sorts/shellsort.h"
+#include "sorts/gnomesort.h"
 // #include "utils/customTimer.h"
 #include <vector>
 
@@ -120,7 +121,7 @@ int main(){
         cout << array[i] <<"\t";
     }
     cout << endl;
-    ShellSort sort = ShellSort();
+    GnomeSort sort = GnomeSort();
     sort.Sort(array,size);
     for(int i = 0;i < size;i++){
         cout << array[i] <<"\t";
