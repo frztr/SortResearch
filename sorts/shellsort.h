@@ -1,35 +1,36 @@
 #include "abstractsort.h"
-namespace Sorts{
-    class ShellSort:public AbstractSort
+namespace Sorts
+{
+    class ShellSort : public AbstractSort
     {
-        void Exchange(int*array, int left, int right)
+        void Exchange(int *array, int left, int right)
         {
             int temp = array[left];
             array[left] = array[right];
             array[right] = temp;
         }
 
-        public:
+    public:
         string getName() const override
         {
             return "ShellSort";
         }
 
-        void Sort(int* array, int count) override
+        void Sort(int *array, int count) override
         {
             int gap = count / 2;
-            while(gap>0)
+            while (gap > 0)
             {
-                for(int i = gap; i<count;i++)
+                for (int i = gap; i < count; i++)
                 {
-                    int j = i-gap;
+                    int j = i - gap;
                     bool cond = true;
-                    while(array[j]< array[j+gap] && cond)
+                    while (array[j] < array[j + gap] && cond)
                     {
-                        Exchange(array,j,j+gap);
-                        if(j>gap)
+                        Exchange(array, j, j + gap);
+                        if (j >= gap)
                         {
-                            j = j-gap;
+                            j = j - gap;
                         }
                         else
                         {
@@ -37,7 +38,7 @@ namespace Sorts{
                         }
                     }
                 }
-                gap = gap/2;   
+                gap = gap / 2;
             }
         }
     };

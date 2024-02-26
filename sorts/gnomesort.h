@@ -20,7 +20,7 @@ namespace Sorts
         {
             int l = count-1;
             while(l>0){
-            if(array[l-1]>array[l])
+            if(array[l-1]>=array[l])
             {
                 l--;
             }
