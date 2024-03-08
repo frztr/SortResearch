@@ -1,7 +1,8 @@
 #include "abstractsort.h"
 namespace Sorts
 {
-    class ShakeSort : public AbstractSort
+    template <typename T>
+    class ShakeSort : public AbstractSort<T>
     {
         void Exchange(int *array, int left, int right)
         {
@@ -11,7 +12,7 @@ namespace Sorts
         }
 
     public:
-        string getName() const override
+     using AbstractSort<T>::AbstractSort;        string getName() const override
         {
             return "ShakeSort";
         }
@@ -31,7 +32,8 @@ namespace Sorts
                 {
                     while (j > i)
                     {
-                        if (array[j - 1] < array[j])
+                        // if (array[j - 1] < array[j])
+                        if(this->condition(array[j-1],array[j]) < 0)
                         {
                             Exchange(array, j - 1, j);
                             ExchangeCount++;
@@ -44,7 +46,8 @@ namespace Sorts
                 {
                     while (i <= j)
                     {
-                        if (array[i - 1] < array[i])
+                        // if (array[i - 1] < array[i])
+                        if(this->condition(array[i-1], array[i]) < 0)
                         {
                             Exchange(array, i - 1, i);
                             ExchangeCount++;

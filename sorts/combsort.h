@@ -3,7 +3,8 @@
 #include <iostream>
 namespace Sorts
 {
-    class CombSort : public AbstractSort
+    template <typename T>
+    class CombSort : public AbstractSort<T>
     {
         void Exchange(int *array, int left, int right)
         {
@@ -13,7 +14,7 @@ namespace Sorts
         }
 
     public:
-        string getName() const override
+     using AbstractSort<T>::AbstractSort;        string getName() const override
         {
             return "CombSort";
         }
@@ -28,7 +29,7 @@ namespace Sorts
             {
                 for (int j = count - 1; j - int(step) > i; j--)
                 {
-                    if (array[j - int(step)] < array[j])
+                    if (this->condition(array[j - int(step)],array[j]))
                     {
                         Exchange(array, j - int(step), j);
                     }
@@ -36,8 +37,7 @@ namespace Sorts
                 i++;
                 step /= factor;
             }
-
-            BubbleSort sort = BubbleSort();
+            BubbleSort<T> sort = BubbleSort<T>(this->condition);
             sort.Sort(array, count);
         }
     };

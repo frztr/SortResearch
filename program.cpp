@@ -17,7 +17,7 @@
 #include "sorts/countingsort.h"
 #include "sorts/radixsortLSD.h"
 #include "sorts/radixsortMSD.h"
-// #include "utils/customTimer.h"
+#include "utils/customTimer.h"
 #include <vector>
 
 using namespace std;
@@ -123,15 +123,22 @@ bool isSorted(int *array, int count)
 //     return 0;
 // };
 
+//CountingSort??
+//RadixLSD??
+//RadixMSD??
+
 int main(){
     srand((unsigned int) time(NULL));
-    int size = 64000;
+    int size = 100;
     int* array = Randomizer::generateRandomArray(size);
     for(int i = 0;i < size;i++){
         cout << array[i] <<"\t";
     }
     cout << endl;
-    RadixSortMSD sort = RadixSortMSD();
+    CombSort<int> sort = CombSort<int>([](int a,int b)
+    {
+        return b-a;
+    });
     sort.Sort(array,size);
     for(int i = 0;i < size;i++){
         cout << array[i] <<"\t";

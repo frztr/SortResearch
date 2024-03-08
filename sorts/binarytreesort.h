@@ -2,7 +2,8 @@
 #include "abstractsort.h"
 namespace Sorts
 {
-    class BinaryTreeSort: public AbstractSort
+    template <typename T>
+    class BinaryTreeSort : public AbstractSort<T>
     {
         enum tdirs
         {
@@ -19,7 +20,9 @@ namespace Sorts
         };
 
     public:
-        string getName() const{
+        using AbstractSort<T>::AbstractSort;
+        string getName() const
+        {
             return "BinaryTreeSort";
         }
 
@@ -39,7 +42,8 @@ namespace Sorts
 
                     k = j;
 
-                    if (tree[j].data < array[i])
+                    // if (tree[j].data < array[i])
+                    if (this->condition(tree[j].data, array[i]) < 0)
                     {
                         dir = left;
                     }

@@ -2,9 +2,10 @@
 #pragma once
 namespace Sorts
 {
-    class BubbleSort : public AbstractSort
+    template <typename T>
+    class BubbleSort : public AbstractSort<T>
     {
-        void Exchange(int *array, int left, int right) 
+        void Exchange(int *array, int left, int right)
         {
             int temp = array[left];
             array[left] = array[right];
@@ -12,6 +13,7 @@ namespace Sorts
         }
 
     public:
+        using AbstractSort<T>::AbstractSort;
         string getName() const override
         {
             return "BubbleSort";
@@ -24,13 +26,15 @@ namespace Sorts
                 int ExchangeCount = 0;
                 for (int j = count - 1; j > i; j--)
                 {
-                    if (array[j - 1] < array[j])
+                    // if (array[j - 1] < array[j])
+                    if (this->condition(array[j - 1], array[j]) < 0)
                     {
                         Exchange(array, j - 1, j);
                         ExchangeCount++;
                     }
                 }
-                if(ExchangeCount == 0) return;
+                if (ExchangeCount == 0)
+                    return;
             }
         };
     };

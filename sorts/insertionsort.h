@@ -1,10 +1,12 @@
 #include "abstractsort.h"
 
 namespace Sorts{
-    class InsertionSort: public AbstractSort{
+    template <typename T>
+    class InsertionSort: public AbstractSort<T>
+    {
 
         public:
-        string getName() const override
+         using AbstractSort<T>::AbstractSort;        string getName() const override
         {
             return "InsertionSort";
         }
@@ -17,7 +19,7 @@ namespace Sorts{
                 bool dec = true;
                 while(j>=0 && dec)
                 {
-                    if(array[j] < temp)
+                    if(this->condition(array[j],temp)<0)
                     {
                         array[j+1] = array[j];
                         j--;

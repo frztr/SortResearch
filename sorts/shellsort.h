@@ -1,7 +1,8 @@
 #include "abstractsort.h"
 namespace Sorts
 {
-    class ShellSort : public AbstractSort
+    template <typename T>
+    class ShellSort : public AbstractSort<T>
     {
         void Exchange(int *array, int left, int right)
         {
@@ -11,7 +12,7 @@ namespace Sorts
         }
 
     public:
-        string getName() const override
+     using AbstractSort<T>::AbstractSort;        string getName() const override
         {
             return "ShellSort";
         }
@@ -25,7 +26,8 @@ namespace Sorts
                 {
                     int j = i - gap;
                     bool cond = true;
-                    while (array[j] < array[j + gap] && cond)
+                    // while (array[j] < array[j + gap] && cond)
+                    while (this->condition(array[j],array[j+gap])<0 && cond)
                     {
                         Exchange(array, j, j + gap);
                         if (j >= gap)

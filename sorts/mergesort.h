@@ -4,7 +4,8 @@
 using namespace std;
 namespace Sorts
 {
-    class MergeSort : public AbstractSort
+    template <typename T>
+    class MergeSort : public AbstractSort<T>
     {
         void SortPart(int *array, int left, int right)
         {
@@ -28,7 +29,9 @@ namespace Sorts
             
             while(l<a_size && r<b_size)
             {
-                if(array[left+l]>array[middle+r]){
+                // if(array[left+l]>array[middle+r])
+                if(this->condition(array[left+l],array[middle+r])>0)
+                {
                     copy[index]= array[left+l];
                     l++;
                 }
@@ -62,7 +65,7 @@ namespace Sorts
         }
 
     public:
-        string getName() const override
+     using AbstractSort<T>::AbstractSort;        string getName() const override
         {
             return "MergeSort";
         }

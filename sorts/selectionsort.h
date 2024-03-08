@@ -1,6 +1,7 @@
 #include "abstractsort.h"
 namespace Sorts{
-    class SelectionSort: public AbstractSort
+    template <typename T>
+    class SelectionSort: public AbstractSort<T>
     {
         void Exchange(int* array, int left, int right)
         {
@@ -10,8 +11,7 @@ namespace Sorts{
         }
 
         public:
-
-        string getName() const override
+         using AbstractSort<T>::AbstractSort;        string getName() const override
         {
             return "SelectionSort";
         }
@@ -22,7 +22,7 @@ namespace Sorts{
             {
                 int min_index = i;
                 for(int j = i;j<count;j++){
-                    if(array[j]> array[min_index])
+                    if(this->condition(array[j],array[min_index])>0)
                     {
                         min_index = j;
                     }

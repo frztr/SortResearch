@@ -4,7 +4,8 @@
 using namespace std;
 namespace Sorts
 {
-    class HeapSort : public AbstractSort
+    template <typename T>
+    class HeapSort : public AbstractSort<T>
     {
         void Exchange(int *array, int left, int right)
         {
@@ -18,11 +19,13 @@ namespace Sorts
             int left = 2 * index + 1;
             int right = 2 * index + 2;
             int min = index;
-            if (left < count && array[left] < array[min])
+            // if (left < count && array[left] < array[min])
+            if (left < count && this->condition(array[left], array[min])<0)
             {
                 min = left;
             }
-            if (right < count && array[right] < array[min])
+            // if (right < count && array[right] < array[min])
+            if (right < count && this->condition(array[right], array[min])<0)
             {
                 min = right;
             }
@@ -35,7 +38,7 @@ namespace Sorts
         }
 
     public:
-        string getName() const override
+     using AbstractSort<T>::AbstractSort;        string getName() const override
         {
             return "HeapSort";
         }

@@ -1,6 +1,7 @@
 #include "abstractsort.h"
 namespace Sorts{
-    class QuickSort:public AbstractSort
+    template <typename T>
+    class QuickSort:public AbstractSort<T>
     {
         void Exchange(int *array, int left, int right)
         {
@@ -19,7 +20,8 @@ namespace Sorts{
 
                 if (!ij)
                 {
-                    if (array[i] >= array[j])
+                    // if (array[i] >= array[j])
+                    if(this->condition(array[i],array[j])>=0)
                     {
                         j--;
                     }
@@ -30,7 +32,8 @@ namespace Sorts{
                 }
                 else
                 {
-                    if (array[j] <= array[i])
+                    // if (array[j] <= array[i])
+                    if(this->condition(array[i],array[j])<=0)
                     {
                         i++;
                     }
@@ -49,7 +52,7 @@ namespace Sorts{
         }
 
     public:
-        std::string getName() const override
+     using AbstractSort<T>::AbstractSort;        std::string getName() const override
         {
             return "QuickSort";
         }
