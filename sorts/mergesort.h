@@ -7,7 +7,7 @@ namespace Sorts
     template <typename T>
     class MergeSort : public AbstractSort<T>
     {
-        void SortPart(int *array, int left, int right)
+        void SortPart(T *array, int left, int right)
         {
             int middle = ((right - left) / 2) + left;
             if (middle - left > 1)
@@ -22,15 +22,14 @@ namespace Sorts
             int a_size = middle - left;
             int b_size = right - middle;
 
-            int* copy = new int[right-left];
+            T* copy = new T[right-left];
             int l = 0;
             int r = 0;
             int index = 0;           
             
             while(l<a_size && r<b_size)
             {
-                // if(array[left+l]>array[middle+r])
-                if(this->condition(array[left+l],array[middle+r])>0)
+                if(this->tester->Test(array[left+l],array[middle+r])>0)
                 {
                     copy[index]= array[left+l];
                     l++;
@@ -70,7 +69,7 @@ namespace Sorts
             return "MergeSort";
         }
 
-        void Sort(int *array, int count) override
+        void Sort(T *array, int count) override
         {
             SortPart(array, 0, count);
         }

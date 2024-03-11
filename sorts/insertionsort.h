@@ -6,20 +6,21 @@ namespace Sorts{
     {
 
         public:
-         using AbstractSort<T>::AbstractSort;        string getName() const override
+        using AbstractSort<T>::AbstractSort;        
+        string getName() const override
         {
             return "InsertionSort";
         }
 
-        void Sort(int* array, int count) override
+        void Sort(T* array, int count) override
         {
             for(int i = 0; i < count;i++){
-                int temp = array[i];
+                T temp = array[i];
                 int j = i - 1;
                 bool dec = true;
                 while(j>=0 && dec)
                 {
-                    if(this->condition(array[j],temp)<0)
+                    if(this->tester->Test(array[j],temp)<0)
                     {
                         array[j+1] = array[j];
                         j--;

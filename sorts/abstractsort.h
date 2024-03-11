@@ -1,26 +1,22 @@
 #include <functional>
+#include "../utils/testers/abstracttester.h"
 #pragma once
 using namespace std;
+using namespace TestNamespace;
 namespace Sorts
 {
     template<typename T=int>
     class AbstractSort
     {
     protected:
-        int (*condition)(int a, int b){[](int a, int b)
-        {
-            return a - b;
-        }};
+        AbstractTester<T> *tester;
 
     public:
-        AbstractSort()
+        AbstractSort(AbstractTester<T> &tester)
         {
-        }
-        AbstractSort(int (*condition)(int, int))
-        {
-            this->condition = condition;
+            this->tester = &tester;
         }
         virtual string getName() const = 0;
-        virtual void Sort(int *array, int count) = 0;
+        virtual void Sort(T *array, int count) = 0;
     };
 };

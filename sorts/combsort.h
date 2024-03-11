@@ -6,20 +6,21 @@ namespace Sorts
     template <typename T>
     class CombSort : public AbstractSort<T>
     {
-        void Exchange(int *array, int left, int right)
+        void Exchange(T *array, int left, int right)
         {
-            int temp = array[left];
+            T temp = array[left];
             array[left] = array[right];
             array[right] = temp;
         }
 
     public:
-     using AbstractSort<T>::AbstractSort;        string getName() const override
+     using AbstractSort<T>::AbstractSort;        
+     string getName() const override
         {
             return "CombSort";
         }
 
-        void Sort(int *array, int count) override
+        void Sort(T *array, int count) override
         {
             const double factor = 1.247;
             double step = count - 1;
@@ -29,7 +30,7 @@ namespace Sorts
             {
                 for (int j = count - 1; j - int(step) > i; j--)
                 {
-                    if (this->condition(array[j - int(step)],array[j]))
+                    if (this->tester->Test(array[j - int(step)],array[j]))
                     {
                         Exchange(array, j - int(step), j);
                     }
@@ -37,7 +38,7 @@ namespace Sorts
                 i++;
                 step /= factor;
             }
-            BubbleSort<T> sort = BubbleSort<T>(this->condition);
+            BubbleSort<T> sort = BubbleSort<T>(this->tester->Test);
             sort.Sort(array, count);
         }
     };

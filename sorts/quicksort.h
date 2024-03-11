@@ -1,16 +1,17 @@
 #include "abstractsort.h"
-namespace Sorts{
+namespace Sorts
+{
     template <typename T>
-    class QuickSort:public AbstractSort<T>
+    class QuickSort : public AbstractSort<T>
     {
-        void Exchange(int *array, int left, int right)
+        void Exchange(T *array, int left, int right)
         {
-            int temp = array[left];
+            T temp = array[left];
             array[left] = array[right];
             array[right] = temp;
         }
 
-        void QuickSortIteration(int *array, int left, int right)
+        void QuickSortIteration(T *array, int left, int right)
         {
             int i = left;
             int j = right;
@@ -20,8 +21,7 @@ namespace Sorts{
 
                 if (!ij)
                 {
-                    // if (array[i] >= array[j])
-                    if(this->condition(array[i],array[j])>=0)
+                    if (this->tester->Test(array[i], array[j]) >= 0)
                     {
                         j--;
                     }
@@ -32,8 +32,7 @@ namespace Sorts{
                 }
                 else
                 {
-                    // if (array[j] <= array[i])
-                    if(this->condition(array[i],array[j])<=0)
+                    if (this->tester->Test(array[i], array[j]) <= 0)
                     {
                         i++;
                     }
@@ -43,21 +42,24 @@ namespace Sorts{
                     }
                 }
             }
-            if(i-1>left){
-                QuickSortIteration(array,left,i-1);
+            if (i - 1 > left)
+            {
+                QuickSortIteration(array, left, i - 1);
             }
-            if(j+1<right){
-                QuickSortIteration(array,j+1,right);
+            if (j + 1 < right)
+            {
+                QuickSortIteration(array, j + 1, right);
             }
         }
 
     public:
-     using AbstractSort<T>::AbstractSort;        std::string getName() const override
+        using AbstractSort<T>::AbstractSort;
+        std::string getName() const override
         {
             return "QuickSort";
         }
 
-        void Sort(int *array, int count) override
+        void Sort(T *array, int count) override
         {
             QuickSortIteration(array, 0, count - 1);
         }

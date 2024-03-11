@@ -15,7 +15,7 @@ namespace Sorts
         class Node
         {
         public:
-            int data;
+            T data;
             array<int, 3> dirs = {-1, -1, -1};
         };
 
@@ -26,7 +26,7 @@ namespace Sorts
             return "BinaryTreeSort";
         }
 
-        void Sort(int *array, int size) override
+        void Sort(T *array, int size) override
         {
             Node *tree = new Node[size];
             tree[0].data = array[0];
@@ -41,9 +41,7 @@ namespace Sorts
                 {
 
                     k = j;
-
-                    // if (tree[j].data < array[i])
-                    if (this->condition(tree[j].data, array[i]) < 0)
+                    if (this->tester->Test(tree[j].data, array[i]) < 0)
                     {
                         dir = left;
                     }

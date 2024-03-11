@@ -1,12 +1,13 @@
+#include "AbstractRandomizer.h"
 #include <cstdlib>
 
 namespace RandomDigits
 {
-    class Randomizer
+    class IntRandomizer: public AbstractRandomizer<int>
     {
         const static int MaxNumber = 70000;
 
-        static int rand(int min, int max)
+        int rand(int min, int max)
         {
             int value = std::rand();
             double percent = (double)value / (double)RAND_MAX;
@@ -16,7 +17,7 @@ namespace RandomDigits
         }
 
     public:
-        static int *generateOrderedArray(int count)
+        int *generateOrderedArray(int count) override
         {
             int *array = new int[count];
             array[0] = MaxNumber;
@@ -27,7 +28,7 @@ namespace RandomDigits
             return array;
         }
 
-        static int *generateReversedArray(int count)
+        int *generateReversedArray(int count) override
         {
             int *array = new int[count];
             array[0] = 0;
@@ -38,7 +39,7 @@ namespace RandomDigits
             return array;
         }
 
-        static int *generateDegenerateArray(int count)
+        int *generateDegenerateArray(int count) override
         {
             int *array = new int[count];
             for (int i = 0; i < count; i++)
@@ -48,7 +49,7 @@ namespace RandomDigits
             return array;
         }
 
-        static int *generateRandomArray(int count)
+        int *generateRandomArray(int count) override
         {
             int *array = new int[count];
             for (int i = 0; i < count; i++)

@@ -10,26 +10,74 @@
 #include "sorts/insertionsort.h"
 #include "sorts/selectionsort.h"
 #include "sorts/mergesort.h"
-#include "utils/randomizer.h"
+#include "utils/randomizers/AbstractRandomizer.h"
+#include "utils/randomizers/IntRandomizer.h"
+#include "utils/randomizers/DoubleRandomizer.h"
 #include "sorts/shellsort.h"
 #include "sorts/gnomesort.h"
 #include "sorts/heapsort.h"
 #include "sorts/countingsort.h"
+#include "utils/randomizers/StringRandomizer.h"
+#include "utils/testers/abstracttester.h"
+#include "utils/testers/doubletester.h"
+#include "utils/testers/inttester.h"
+#include "utils/testers/stringtester.h"
+#include <map>
 #include "sorts/radixsortLSD.h"
 #include "sorts/radixsortMSD.h"
 #include "utils/customTimer.h"
 #include <vector>
+#include <math.h>
 
 using namespace std;
 using namespace Sorts;
 using namespace RandomDigits;
+using namespace TestNamespace;
 // using namespace TimerNamespace;
 
-bool isSorted(int *array, int count)
+int intTest(int a, int b)
+{
+    return a - b;
+}
+
+int doubleTest(double a, double b)
+{
+    if (a < b)
+        return -1;
+    if (a > b)
+        return 1;
+    return 0;
+}
+
+int stringTest(string a, string b)
+{
+    string str = "9876543210zZyYxXwWvVuUtTsSrRqQpPoOnNmMlLkKjJiIhHgGfFeEdDcCbBaA";
+    map<char, int> alphabet;
+    for (int i = 0; i < str.length(); i++)
+    {
+        alphabet[str[i]] = i;
+    }
+
+    for (int i = 0; i < a.length() && i < b.length(); i++)
+    {
+        if (alphabet[a[i]] > alphabet[b[i]])
+            return 1;
+        if (alphabet[b[i]] > alphabet[a[i]])
+            return -1;
+    }
+    if (a.length() > b.length())
+        return -1;
+    if (a.length() < b.length())
+        return 1;
+    return 0;
+};
+
+template <typename T>
+bool isSorted(T *array, int count, AbstractTester<T> &test)
 {
     for (int i = 1; i < count; i++)
     {
-        if (array[i] > array[i - 1])
+        if (test.Test(array[i], array[i - 1]) > 0)
         {
             return false;
         }
@@ -52,7 +100,7 @@ bool isSorted(int *array, int count)
 //     {
 //         throw new exception();
 //     }
-    
+
 //     return time;
 // }
 
@@ -123,27 +171,29 @@ bool isSorted(int *array, int count)
 //     return 0;
 // };
 
-//CountingSort??
-//RadixLSD??
-//RadixMSD??
+// CountingSort??
+// RadixLSD??
+// RadixMSD??
 
-int main(){
-    srand((unsigned int) time(NULL));
-    int size = 100;
-    int* array = Randomizer::generateRandomArray(size);
-    for(int i = 0;i < size;i++){
-        cout << array[i] <<"\t";
-    }
-    cout << endl;
-    CombSort<int> sort = CombSort<int>([](int a,int b)
+int main()
+{
+    srand((unsigned int)time(NULL));
+    int size = 64000;
+    string *array = (new StringRandomizer())->generateDegenerateArray(size);
+    for (int i = 0; i < size; i++)
     {
-        return b-a;
-    });
-    sort.Sort(array,size);
-    for(int i = 0;i < size;i++){
-        cout << array[i] <<"\t";
+        cout << array[i] << "\t\t";
     }
     cout << endl;
-    cout << isSorted(array, size);
+    AbstractTester<string> *tester = new StringTester();
+    CountingSort<string> sort = CountingSort<string>(*tester);
+    sort.Sort(array, size);
+    for (int i = 0; i < size; i++)
+    {
+        cout << array[i] << "\t\t";
+    }
+    cout << endl;
+
+    cout << isSorted<string>(array, size, *tester);
     cout << endl;
 }
