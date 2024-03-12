@@ -38,7 +38,7 @@ namespace Sorts
                 i++;
                 step /= factor;
             }
-            BubbleSort<T> sort = BubbleSort<T>(this->tester->Test);
+            BubbleSort<T> sort = BubbleSort<T>(*(this->tester));
             sort.Sort(array, count);
         }
     };

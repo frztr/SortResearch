@@ -66,7 +66,7 @@ namespace Sorts
 
         void SortDouble(double *array, int count)
         {
-            const double mult = pow(10.0, 6.0);
+            const double mult = pow(10.0, 8.0);
             double max = array[0] * mult;
             for (int i = 1; i < count; i++)
             {

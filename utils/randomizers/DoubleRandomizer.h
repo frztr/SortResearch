@@ -23,7 +23,7 @@ namespace RandomDigits
             array[0] = MaxNumber;
             for (int i = 1; i < count; i++)
             {
-                array[i] = array[i - 1] - rand(0, MaxNumber / count) - 1;
+                array[i] = array[i - 1] - rand(0, MaxNumber / count);
             }
             return array;
         }
@@ -34,7 +34,7 @@ namespace RandomDigits
             array[0] = 0;
             for (int i = 1; i < count; i++)
             {
-                array[i] = array[i - 1] + rand(0, MaxNumber / count) + 1;
+                array[i] = array[i - 1] + rand(0, MaxNumber / count);
             }
             return array;
         }

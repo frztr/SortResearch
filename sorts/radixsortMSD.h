@@ -112,18 +112,21 @@ namespace Sorts
                     digits[j] = new vector<double>();
                 }
 
-                int ch = 1;
-                for (int k = 0; k < maxSize - digitcount; k++)
-                {
-                    ch *= 10;
-                }
+                // int ch = 1;
+                // for (int k = 0; k < maxSize - digitcount; k++)
+                // {
+                //     ch *= 10;
+                // }
+
+                long long ch = pow(10, maxSize - digitcount);
 
                 for (int j = left; j < right; j++)
                 {
-                    int number = basearray[j];
+                    double number = basearray[j];
                     number /= ch;
-                    number %= 10;
-                    digits[number]->push_back(basearray[j]);
+                    long long num = number;
+                    num %= 10;
+                    digits[num]->push_back(basearray[j]);
                 }
 
                 int index = left;
@@ -166,7 +169,7 @@ namespace Sorts
 
         void SortDouble(double *array, int count)
         {
-            long mult = 1000000;
+            const double mult = pow(10.0, 8.0);
             double max = array[0] * mult;
             for (int i = 1; i < count; i++)
             {

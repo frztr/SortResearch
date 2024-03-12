@@ -6,16 +6,21 @@ namespace TestNamespace
 {
     class StringTester : public AbstractTester<string>
     {
+        map<char, int> alphabet;
+
         public:
-        int Test(string a, string b) override
+        StringTester()
         {
             string str = "9876543210zZyYxXwWvVuUtTsSrRqQpPoOnNmMlLkKjJiIhHgGfFeEdDcCbBaA";
-            map<char, int> alphabet;
+            
             for (int i = 0; i < str.length(); i++)
             {
                 alphabet[str[i]] = i;
             }
+        }
 
+        int Test(string a, string b) override
+        {
             for (int i = 0; i < a.length() && i < b.length(); i++)
             {
                 if (alphabet[a[i]] > alphabet[b[i]])
