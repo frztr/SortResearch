@@ -13,7 +13,7 @@ namespace Sorts
         {
             if (left < right)
             {
-                string str = "9876543210zZyYxXwWvVuUtTsSrRqQpPoOnNmMlLkKjJiIhHgGfFeEdDcCbBaA";
+                string str = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
                 unordered_map<int, vector<string>> digits;
                 vector<string> emp;
                 for (int j = 0; j < str.length(); j++)
@@ -38,11 +38,7 @@ namespace Sorts
 
                 int index = left;
                 int _l = index;
-                for (string d : emp)
-                {
-                    basearray[index] = d;
-                    index++;
-                }
+                
 
                 for (int j = str.length(); j >= 0; j--)
                 {
@@ -57,6 +53,12 @@ namespace Sorts
                     {
                         SortMiniArray(basearray, _l, index, digitcount + 1, maxSize);
                     }
+                }
+
+                for (string d : emp)
+                {
+                    basearray[index] = d;
+                    index++;
                 }
             }
         }
@@ -169,7 +171,7 @@ namespace Sorts
 
         void SortDouble(double *array, int count)
         {
-            const double mult = pow(10.0, 8.0);
+            const double mult = pow(10.0, 11.0);
             double max = array[0] * mult;
             for (int i = 1; i < count; i++)
             {

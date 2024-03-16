@@ -17,7 +17,7 @@ namespace Sorts
         public:
             bool operator()(string_view a, string_view b) const
             {
-                string str = "9876543210zZyYxXwWvVuUtTsSrRqQpPoOnNmMlLkKjJiIhHgGfFeEdDcCbBaA";
+                string str = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
                 map<char, int> alphabet;
                 for (int i = 0; i < str.length(); i++)
                 {
@@ -33,11 +33,11 @@ namespace Sorts
                 }
                 if (a.length() < b.length())
                 {
-                    return 0;
+                    return 1;
                 }
                 if (a.length() > b.length())
                 {
-                    return 1;
+                    return 0;
                 }
                 return 0;
             }

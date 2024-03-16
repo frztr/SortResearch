@@ -11,7 +11,7 @@ namespace TestNamespace
         public:
         StringTester()
         {
-            string str = "9876543210zZyYxXwWvVuUtTsSrRqQpPoOnNmMlLkKjJiIhHgGfFeEdDcCbBaA";
+            string str = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
             
             for (int i = 0; i < str.length(); i++)
             {
@@ -29,9 +29,9 @@ namespace TestNamespace
                     return -1;
             }
             if (a.length() > b.length())
-                return -1;
-            if (a.length() < b.length())
                 return 1;
+            if (a.length() < b.length())
+                return -1;
             return 0;
         }
     };

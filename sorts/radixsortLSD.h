@@ -66,7 +66,7 @@ namespace Sorts
 
         void SortDouble(double *array, int count)
         {
-            const double mult = pow(10.0, 8.0);
+            const double mult = pow(10.0, 11.0);
             double max = array[0] * mult;
             for (int i = 1; i < count; i++)
             {
@@ -119,7 +119,7 @@ namespace Sorts
 
         void SortString(string *array, int count)
         {
-            string str = "9876543210zZyYxXwWvVuUtTsSrRqQpPoOnNmMlLkKjJiIhHgGfFeEdDcCbBaA";
+            string str = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
             int max = array[0].length();
             for (int i = 1; i < count; i++)
             {
@@ -154,11 +154,6 @@ namespace Sorts
                 }
 
                 int index = 0;
-                for (string d : emp)
-                {
-                    array[index] = d;
-                    index++;
-                }
                 for (int j = str.length(); j >= 0; j--)
                 {
                     for (string d : digits[str[j]])
@@ -166,6 +161,11 @@ namespace Sorts
                         array[index] = d;
                         index++;
                     }
+                }
+                for (string d : emp)
+                {
+                    array[index] = d;
+                    index++;
                 }
             }
         }

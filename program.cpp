@@ -42,8 +42,6 @@ bool isSorted(T *array, int count, AbstractTester<T> &test)
     {
         if (test.Test(array[i], array[i - 1]) > 0)
         {
-            // cout << endl << array[i] << "|" << array[i-1] << endl;
-            // throw new exception();
             return false;
         }
     }
@@ -88,10 +86,10 @@ template <typename T>
 void TypeResearch(AbstractRandomizer<T> &randomizer, AbstractTester<T> &tester)
 {
     cout << "Type: " << typeid(T).name() << endl;
-    const int width = 32;
+    const int width = 50;
     
-    // vector<int> sizes = {1000, 2000, 4000, 8000, 16000, 32000, 64000};
-    vector<int> sizes = {1000,2000,4000,8000,16000};
+    vector<int> sizes = {1000, 2000, 4000, 8000, 16000, 32000, 64000};
+    // vector<int> sizes = {1000,2000,4000,8000,16000};
 
     T **arraysPointer = generateArrays<T>(sizes, sizes.size(),randomizer);
     vector<AbstractSort<T> *> sortAlgorithms{
@@ -150,15 +148,11 @@ int main()
     return 0;
 };
 
-// CountingSort??
-// RadixLSD??
-// RadixMSD??
-
 // int main()
 // {
-//     using arrayType = double;
-//     using arrayRandomizer = DoubleRandomizer;
-//     using arrayTester = DoubleTester;
+//     using arrayType = string;
+//     using arrayRandomizer = StringRandomizer;
+//     using arrayTester = StringTester;
 
 //     srand((unsigned int)time(NULL));
 //     int size = 64000;
@@ -169,7 +163,7 @@ int main()
 //     }
 //     cout << endl;
 //     AbstractTester<arrayType> *tester = new arrayTester();
-//     RadixSortMSD<arrayType> sort = RadixSortMSD<arrayType>(*tester);
+//     CountingSort<arrayType> sort = CountingSort<arrayType>(*tester);
 //     sort.Sort(array, size);
 //     for (int i = 0; i < size; i++)
 //     {

@@ -22,7 +22,7 @@ namespace RandomDigits
 
         static string weightToStr(int weight)
         {
-            static string _charset = "9876543210zZyYxXwWvVuUtTsSrRqQpPoOnNmMlLkKjJiIhHgGfFeEdDcCbBaA";
+            static string _charset = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
             int charlen = _charset.length();
             int curweight = weight;
             string word;
